@@ -9,18 +9,17 @@ public class ClientDocSo {
             // Lay ra 2 stream in + out
             InputStream is = s.getInputStream();
             OutputStream os = s.getOutputStream();
-
             while (true) {
                 // Nhap 1 ky tu ch tu ban phim
                 System.out.println("Nhap 1 ki tu so: ");
                 int ch = System.in.read();
+                // Neu ky tu la @ thi thoat khoi chuong trinh
+                if (ch=='@')
+                    break;
                 // Gui ky tu so den Server
                 os.write(ch);
                 // Bo qua 2 ki tu \r va \n
                 System.in.skip(2);
-                // Neu ky tu la @ thi thoat khoi chuong trinh
-                if (ch=='@')
-                    break;
                 // Nhan ket qua tra ve (nhieu ky tu) tu Server
                 byte b[] = new byte[1000];
                 int n = is.read(b);
@@ -30,10 +29,10 @@ public class ClientDocSo {
             }
             s.close();
         } catch (UnknownHostException e) {
-            System.out.println("Sai dia chi");
+            System.out.println("Sai dia chi: " + e);
 
         } catch (IOException e) {
-            System.out.println("Loi nhap xuat");
+            System.out.println("Loi nhap xuat: " + e);
         }
     }
 }

@@ -10,8 +10,8 @@ public class ServerBinary {
             while (true) {
                 // Chap nhan noi ket cua Client
                 Socket s = ss.accept();
-                System.out.println("Co Client dia chi " + s.getInetAddress().toString() + ", cong " + s.getPort()
-                        + " ket noi den Server!");
+                System.out.println("Co 1 client " + s.getInetAddress().toString()
+                        + " cong " + s.getPort() + " noi ket");
                 // Khai bao hai stream in-out
                 InputStream is = s.getInputStream();
                 OutputStream os = s.getOutputStream();
@@ -19,22 +19,20 @@ public class ServerBinary {
                 while (true) {
                     byte b[] = new byte[500];
                     int n = is.read(b);
-                    String songuyen, kqua;
+                    String songuyen, kq;
                     songuyen = new String(b, 0, n);
+                    System.out.println("Nhan tu Client: " + songuyen);
                     if (songuyen == "@")
                         break;
                     // Xu ly so nguyen sang nhi phan
-                    kqua = Integer.toBinaryString(Integer.parseInt(songuyen));
+                    kq = Integer.toBinaryString(Integer.parseInt(songuyen));
                     // Gui cho Client
-                    os.write(kqua.getBytes());
+                    os.write(kq.getBytes());
                 }
-                System.out.println(
-                        "Dong noi ket voi Client dia chi " + s.getInetAddress().toString() + ", cong " + s.getPort());
                 s.close();
             }
         } catch (IOException e) {
-            System.out.println("Co loi IOException!");
+            System.out.println("Co loi IOException: " + e);
         }
-        ;
     }
 }

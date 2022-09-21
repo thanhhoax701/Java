@@ -5,8 +5,8 @@ public class ServerBinary {
     public static void main(String[] args) {
         // Khoi tao Server Socket
         try {
-            ServerSocket ss = new ServerSocket(789);
-            System.out.println("Da khoi tao thanh cong Server Socket!");
+            ServerSocket ss = new ServerSocket(1610);
+            System.out.println("Da khoi tao xong cong 1610");
             while (true) {
                 // Chap nhan noi ket cua Client
                 Socket s = ss.accept();
@@ -31,8 +31,10 @@ public class ServerBinary {
                 }
                 s.close();
             }
+        } catch (NumberFormatException e) {
+            System.out.println("Loi dinh dang: " + e);
         } catch (IOException e) {
-            System.out.println("Co loi IOException: " + e);
+            System.out.println("Loi nhap xuat: " + e);
         }
     }
 }

@@ -6,17 +6,17 @@ public class ClientBinary {
     public static void main(String[] args) {
         // Tao noi ket den Server
         try {
-            Socket s = new Socket("127.0.0.1", 789);
+            Socket s = new Socket("127.0.0.1", 1610);
             // Khai bao hai stream in-out
             InputStream is = s.getInputStream();
             OutputStream os = s.getOutputStream();
             while (true) {
                 // Xu ly nhap chuoi so nguyen
-                String songuyen;
                 Scanner kb = new Scanner(System.in);
                 System.out.println("Nhap vao chuoi so nguyen: ");
-                songuyen = kb.nextLine();
+                String songuyen = kb.nextLine();
                 System.in.skip(2);
+                // byte [] inputByte = songuyen.getBytes();
                 // Gui cho Server
                 os.write(songuyen.getBytes());
                 if (songuyen == "@")
@@ -30,7 +30,7 @@ public class ClientBinary {
             // Dong noi ket
             s.close();
         } catch (UnknownHostException e) {
-            System.out.println("Sai dia chi: " + e);
+            System.out.println("Khong noi ket duoc voi Server: " + e);
 
         } catch (IOException e) {
             System.out.println("Loi nhap xuat: " + e);

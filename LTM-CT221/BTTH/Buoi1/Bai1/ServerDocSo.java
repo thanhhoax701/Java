@@ -12,10 +12,11 @@ public class ServerDocSo {
                 Socket s = ss.accept();
                 System.out.println("Co 1 client " + s.getInetAddress().toString()
                         + " cong " + s.getPort() + " noi ket");
-                while(true) {
                 // Lay ra 2 stream in + out
                 InputStream is = s.getInputStream();
                 OutputStream os = s.getOutputStream();
+                // Phuc vu cho 1 Client nhieu lan
+                while(true) {
                 // Nhan 1 ky tu tu Client
                 int ch = is.read();
                 System.out.println("Nhan tu Client: " + ch);
@@ -40,11 +41,11 @@ public class ServerDocSo {
                 byte b[] = kq.getBytes();
                 os.write(b);
                 }
+                // Dong noi ket voi Client
                 s.close();
             }
         } catch (UnknownHostException e) {
-            System.out.println("Sai dia chi: " + e);
-
+            System.out.println("Khong noi ket duoc voi Server: " + e);
         } catch (IOException e) {
             System.out.println("Loi nhap xuat: " +e);
         }

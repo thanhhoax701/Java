@@ -19,7 +19,7 @@ public class ClientBinary {
                 // byte [] inputByte = songuyen.getBytes();
                 // Gui cho Server
                 os.write(songuyen.getBytes());
-                if (songuyen == "@")
+                if (songuyen.equals("exit"))
                     break;
                 // Nhan ket qua va hien thi ra man hinh
                 byte b[] = new byte[1000];

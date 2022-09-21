@@ -19,20 +19,22 @@ public class ServerBinary {
                 while (true) {
                     byte b[] = new byte[500];
                     int n = is.read(b);
-                    String songuyen, kq;
-                    songuyen = new String(b, 0, n);
+                    String songuyen = new String(b, 0, n);
                     System.out.println("Nhan tu Client: " + songuyen);
-                    if (songuyen == "@")
+                    if (songuyen.equals("exit"))
                         break;
-                    // Xu ly so nguyen sang nhi phan
-                    kq = Integer.toBinaryString(Integer.parseInt(songuyen));
+                    String kq = "";
+                    try {
+                        // Xu ly so nguyen sang nhi phan
+                        kq = Integer.toBinaryString(Integer.parseInt(songuyen));
+                    } catch (NumberFormatException e) {
+                        kq = "Khong phai la so nguyen";
+                    }
                     // Gui cho Client
                     os.write(kq.getBytes());
                 }
                 s.close();
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Loi dinh dang: " + e);
         } catch (IOException e) {
             System.out.println("Loi nhap xuat: " + e);
         }

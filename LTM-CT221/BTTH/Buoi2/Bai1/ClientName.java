@@ -1,37 +1,33 @@
 import java.io.*;
 import java.net.*;
-import java.util.Scanner;
+import java.util.*;
 
-public class ClientBinary {
+public class ClientName {
     public static void main(String[] args) {
         try {
             // Tao noi ket den Server
-            Socket s = new Socket("127.0.0.1", 1610);
-            // Khai bao hai stream in-out
+            Socket s = new Socket("127.0.0.1", 2001);
+            // Khai bao 2 stream in + out
             InputStream is = s.getInputStream();
             OutputStream os = s.getOutputStream();
             while (true) {
-                // Xu ly nhap chuoi so nguyen
                 Scanner kb = new Scanner(System.in);
-                System.out.println("Nhap vao chuoi so nguyen: ");
-                String songuyen = kb.nextLine();
+                System.out.println("Nhap ho ten: ");
+                String hoTen = kb.nextLine();
+                // Bo qua 2 ki tu \r va \n
                 System.in.skip(2);
-                // byte [] inputByte = songuyen.getBytes();
                 // Gui cho Server
-                os.write(songuyen.getBytes());
-                if (songuyen.equals("exit"))
-                    break;
+                os.write(hoTen.getBytes());
+                if (hoTen.equals("exit")) break;
                 // Nhan ket qua va hien thi ra man hinh
-                byte b[] = new byte[1000];
+                byte b[] = new byte[100];
                 int n = is.read(b);
                 String kq = new String(b, 0, n);
                 System.out.println("Ket qua nhan duoc: " + kq);
             }
-            // Dong noi ket
             s.close();
         } catch (UnknownHostException e) {
             System.out.println("Khong noi ket duoc voi Server: " + e);
-
         } catch (IOException e) {
             System.out.println("Loi nhap xuat: " + e);
         }

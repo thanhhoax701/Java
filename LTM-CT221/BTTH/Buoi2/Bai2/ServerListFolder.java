@@ -25,7 +25,7 @@ import java.net.*;
 import java.io.*;
 import java.util.Scanner;
 
-class ServerListFile {
+class ServerListFolder{
     public static void main(String[] args) {
         try {
             // Tao Server Socket cong 289

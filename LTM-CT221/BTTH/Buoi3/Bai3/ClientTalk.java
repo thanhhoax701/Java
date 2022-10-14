@@ -20,7 +20,7 @@ public class ClientTalk {
                 socket.send(outputPack);
 
                 // Nhan du lieu
-                byte intputByte[] = new byte[6000000];
+                byte intputByte[] = new byte[60000];
                 DatagramPacket inputPack = new DatagramPacket(intputByte, intputByte.length);
                 socket.receive(inputPack);
 

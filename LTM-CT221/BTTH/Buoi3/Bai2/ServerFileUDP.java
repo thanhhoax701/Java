@@ -7,7 +7,7 @@ public class ServerFileUDP {
     public static void main(String[] args) {
         try {
             DatagramSocket socket = new DatagramSocket(port);
-            byte inputByte[] = new byte[5000000];
+            byte inputByte[] = new byte[60000];
             while(true) {
                 // Nhan ten file tu Client
                 DatagramPacket inputPack = new DatagramPacket(inputByte, inputByte.length);

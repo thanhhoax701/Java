@@ -9,7 +9,7 @@ public class ServerTalk {
         try{
             DatagramSocket socket = new DatagramSocket(port);
             Scanner sc = new Scanner(System.in);
-            byte inputByte[] = new byte[6000000];
+            byte inputByte[] = new byte[60000];
             while(true) {
                 // Nhan ten file tu Client
                 DatagramPacket inputPack = new DatagramPacket(inputByte, inputByte.length);

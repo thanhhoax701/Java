@@ -26,7 +26,7 @@ public class ClientFileUDP {
             // Nhan yeu cau va luu ra file
             File file = new File("result");
             FileOutputStream fos = new FileOutputStream(file);
-            byte intputByte[] = new byte[5000000];
+            byte intputByte[] = new byte[60000];
             DatagramPacket inputPack = new DatagramPacket(intputByte, intputByte.length);
             socket.receive(inputPack);
             fos.write(inputPack.getData(), 0, inputPack.getLength());

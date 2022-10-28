@@ -39,7 +39,7 @@ public class ServerBigFileUDP {
                 for (int i = 0; i < fileAmount - 1; i++) {
                     // Copy cac goi
                     for (int j = 0; j < 60000; j++) {
-                        midByte[j] = b1[i * 60000 + j];
+                        midByte[j] = b[i * 60000 + j];
                     }
                     DatagramPacket midPacket = new DatagramPacket(midByte, 60000, ad, port);
                     ds.send(midPacket);
@@ -50,7 +50,7 @@ public class ServerBigFileUDP {
                 byte endByte[] = new byte[60000];
                 int endAmount = fileLength - ((fileAmount - 1) * 60000);
                 for (int y = 0; y < endAmount; y++) {
-                    endByte[y] = b1[((fileAmount - 1) * 60000) + y];
+                    endByte[y] = b[((fileAmount - 1) * 60000) + y];
                 }
 
                 // Dong goi

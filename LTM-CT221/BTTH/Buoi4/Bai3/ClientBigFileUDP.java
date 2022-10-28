@@ -14,7 +14,9 @@ public class ClientBigFileUDP {
             ms.joinGroup(ad);
 
             File file = new File("kq");
+            FileInputStream fis = new FileInputStream(file);
             FileOutputStream fos = new FileOutputStream(file);
+            int count = 0;
 
             while (true) {
                 // Nhan goi bat dau (rong)
@@ -25,20 +27,29 @@ public class ClientBigFileUDP {
                 while (start == 0) {
                     System.out.println("Dang ghi file");
                     byte b1[] = new byte[60000];
-                    DatagramPacket goinhan = new DatagramPacket(b1, b1.length);
-                    ms.receive(goinhan);
+                    DatagramPacket pack = new DatagramPacket(b1, b1.length);
+                    ms.receive(pack);
 
-                    if (goinhan.getLength() == 0) {
+                    if (pack.getLength() == 0) {
                         complete = true;
                         break;
                     }
-                    fos.write(goinhan.getData());
+                    fos.write(pack.getData());
+                    count += pack.getLength();
                 }
-                if (complete)
+                if (complete) {
+                    byte b2[] = new byte[count];
+                    fis.read(b2);
+                    FileOutputStream out = new FileOutputStream("final");
+                    out.write(b2, 0 , count);
                     break;
-                System.out.println("Da ghi file thanh cong");
+                }
                 // Dong socket
                 ms.close();
+                fis.close();
+                fos.close();
+                file.delete();
+                System.out.println("Da luu file thanh cong");
             }
         } catch (UnknownHostException e) {
             System.out.println("Sai dia chi");

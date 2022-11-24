@@ -66,7 +66,7 @@ public class De2 {
             }
             // 11
             else{
-                System.err.println("Chung thuc thanh cong");
+                System.out.println("Chung thuc thanh cong");
             }
             sc.close();
             datagramSocket.close();

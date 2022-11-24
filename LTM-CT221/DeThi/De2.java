@@ -34,7 +34,7 @@ public class De2 {
             datagramSocket.send(goiGui);
             // 6
             byte bMatKhau[] = new byte[60000];
-            DatagramPacket goiNhanMatKhau = new DatagramPacket(b, b.length);
+            DatagramPacket goiNhanMatKhau = new DatagramPacket(bMatKhau, bMatKhau.length);
             datagramSocket.receive(goiNhanMatKhau);
             bMatKhau = goiNhanMatKhau.getData();
             String matKhau = new String(bMatKhau, 0, goiNhanMatKhau.getLength());

@@ -44,13 +44,12 @@ public class de2 {
             Socket tcpSocket = new Socket(dcServer, portTCP);
 
             // 8
-            Scanner sc = new Scanner(System.in);
             InputStream is = tcpSocket.getInputStream();
             OutputStream os = tcpSocket.getOutputStream();
             PrintStream ps = new PrintStream(os);
             byte bChungThuc[] = InetAddress.getLocalHost().getHostAddress().getBytes();
             ps.write(bChungThuc);
-
+            
             // 9
             String chuoiDaoNguoc = "";
             for(int i = matKhau.length()-1; i >= 0; i--) {
@@ -58,8 +57,9 @@ public class de2 {
             }
             byte bChuoiDaoNguoc[] = chuoiDaoNguoc.getBytes();
             ps.write(bChuoiDaoNguoc);
-
+            
             // 10
+            Scanner sc = new Scanner(is);
             String str = sc.nextLine();
             if(str.equals("-ERR")) {
                 System.out.println("Chung thuc that bai");
@@ -70,6 +70,7 @@ public class de2 {
             datagramSocket.close();
             tcpSocket.close();
             fis.close();
+
         } catch (SocketException e) {
             System.out.println(e);
         } catch (UnknownHostException e) {

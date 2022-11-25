@@ -52,13 +52,13 @@ public class dethu4 {
         Socket tcpSocket = new Socket(dcServer, portTCP);
 
         // 7
-        Scanner sc = new Scanner(System.in);
         InputStream is = tcpSocket.getInputStream();
         OutputStream os = tcpSocket.getOutputStream();
         PrintStream ps = new PrintStream(os);
         ps.println(key);
-
+        
         // 8
+        Scanner sc = new Scanner(is);
         String str = sc.nextLine();
         int soByte = Integer.parseInt(str);
 

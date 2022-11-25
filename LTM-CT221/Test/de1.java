@@ -42,13 +42,13 @@ public class de1 {
             Socket tcpSocket = new Socket(dcServer, portTCP);
 
             // 7
-            Scanner sc = new Scanner(System.in);
             InputStream is = tcpSocket.getInputStream();
             OutputStream os = tcpSocket.getOutputStream();
             PrintStream ps = new PrintStream(os);
             byte bMatKhau[] = noiDungGoi2.getBytes();
             ps.write(bMatKhau);
-
+            Scanner sc = new Scanner(is);
+            
             // 8
             byte bChungThuc[] = new byte[1000];
             int nChungThuc = is.read(bChungThuc);
@@ -56,7 +56,7 @@ public class de1 {
             if(kqChungThuc.equals("-ERR")){
                 System.out.println("Mat khau sai");
             }
-
+            
             // 9 10
             else {
                 String str = sc.nextLine();
